@@ -5,18 +5,22 @@ import web3 from "./utils/web3";
 
 function App() {
   const [owner, setOwner] = useState("");
+  const [orderInfo, setOrderInfo] = useState({});
   const [itemId, setItemId] = useState("");
   const [itemName, setItemName] = useState("");
   const [message, setMessage] = useState("");
+  const [uniqueId, setUniqueId] = useState("");
 
   useEffect(() => {
-    console.log(lottery);
     fetchData();
   }, []);
 
   const fetchData = async () => {
     const owner = await lottery.methods.owner().call();
+    // const orderInfo = await lottery.methods.packagee().call();
+    // console.log(orderInfo);
     setOwner(owner);
+    // setOrderInfo(orderInfo);
   };
 
   const onClick = async () => {
@@ -24,13 +28,15 @@ function App() {
 
     setMessage("Waiting...");
 
-    await lottery.methods.orderIitem(itemId, itemName).send({
+    const ordered = await lottery.methods.orderIitem(itemId, itemName).send({
       from: accounts[0],
     });
 
     setMessage("Done...");
+    setUniqueId(ordered.blockHash);
 
-    console.log(accounts[0]);
+    const orderedInfo = await lottery.methods.package().call();
+    setOrderInfo(orderedInfo);
   };
   return (
     <div className="App">
@@ -48,6 +54,8 @@ function App() {
 
       <button onClick={onClick}>Click</button>
       <p>{message}</p>
+      <p>{JSON.stringify(orderInfo)}</p>
+      <p>{uniqueId} </p>
     </div>
   );
 }

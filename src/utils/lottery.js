@@ -2,7 +2,7 @@ import web3 from "./web3";
 
 // const address = "0x369e25129196adf9c4c7a8d4aa4a459a32aca3a1";
 
-const address = "0xD1A4901d2572c6de9ec9D21994AD45Ea8A11ff30";
+const address = "0xa593df592B3b581f099120229Cb81F86efA86F7c";
 
 const abi = [
   {
@@ -106,6 +106,52 @@ const abi = [
     ],
     payable: false,
     stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: true,
+    inputs: [],
+    name: "package",
+    outputs: [
+      {
+        name: "isuidgenerated",
+        type: "bool",
+      },
+      {
+        name: "itemId",
+        type: "string",
+      },
+      {
+        name: "itemName",
+        type: "string",
+      },
+      {
+        name: "transitStatus",
+        type: "string",
+      },
+      {
+        name: "orderStatus",
+        type: "uint256",
+      },
+      {
+        name: "customer",
+        type: "address",
+      },
+      {
+        name: "orderTime",
+        type: "uint256",
+      },
+      {
+        name: "carrier1",
+        type: "address",
+      },
+      {
+        name: "carrier1Time",
+        type: "uint256",
+      },
+    ],
+    payable: false,
+    stateMutability: "view",
     type: "function",
   },
   {

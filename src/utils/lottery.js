@@ -1,6 +1,8 @@
 import web3 from "./web3";
 
-const address = "0x369e25129196adf9c4c7a8d4aa4a459a32aca3a1";
+// const address = "0x369e25129196adf9c4c7a8d4aa4a459a32aca3a1";
+
+const address = "0xD1A4901d2572c6de9ec9D21994AD45Ea8A11ff30";
 
 const abi = [
   {
@@ -19,7 +21,7 @@ const abi = [
       },
       {
         name: "itemId",
-        type: "uint256",
+        type: "string",
       },
       {
         name: "itemName",
@@ -74,18 +76,9 @@ const abi = [
     type: "function",
   },
   {
-    constant: false,
-    inputs: [
-      {
-        name: "_itemid",
-        type: "uint256",
-      },
-      {
-        name: "_itemName",
-        type: "string",
-      },
-    ],
-    name: "orderIitem",
+    constant: true,
+    inputs: [],
+    name: "owner",
     outputs: [
       {
         name: "",
@@ -93,7 +86,7 @@ const abi = [
       },
     ],
     payable: false,
-    stateMutability: "nonpayable",
+    stateMutability: "view",
     type: "function",
   },
   {
@@ -129,6 +122,29 @@ const abi = [
     ],
     name: "carrier1Report",
     outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: "_itemid",
+        type: "string",
+      },
+      {
+        name: "_itemName",
+        type: "string",
+      },
+    ],
+    name: "orderIitem",
+    outputs: [
+      {
+        name: "",
+        type: "address",
+      },
+    ],
     payable: false,
     stateMutability: "nonpayable",
     type: "function",

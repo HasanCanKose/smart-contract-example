@@ -17,10 +17,7 @@ function App() {
 
   const fetchData = async () => {
     const owner = await lottery.methods.owner().call();
-    // const orderInfo = await lottery.methods.packagee().call();
-    // console.log(orderInfo);
     setOwner(owner);
-    // setOrderInfo(orderInfo);
   };
 
   const onClick = async () => {
@@ -35,8 +32,8 @@ function App() {
     setMessage("Done...");
     setUniqueId(ordered.blockHash);
 
-    const orderedInfo = await lottery.methods.package().call();
-    setOrderInfo(orderedInfo);
+    const orderInfo = await lottery.methods.package().call();
+    setOrderInfo(orderInfo);
   };
   return (
     <div className="App">

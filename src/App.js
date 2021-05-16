@@ -29,11 +29,25 @@ function App() {
       from: accounts[0],
     });
 
+    console.log(ordered);
+
     setMessage("Done...");
-    setUniqueId(ordered.blockHash);
+    // setUniqueId(ordered);
 
     const orderInfo = await lottery.methods.package().call();
     setOrderInfo(orderInfo);
+  };
+
+  const handleCarrier = async () => {
+    const accounts = web3.eth.getAccounts();
+
+    setMessage("Carrier waiting...");
+
+    await lottery.methods.carrier1Report(uniqueId, "Hello").send({
+      from: accounts[0],
+    });
+
+    setMessage("Carrier done");
   };
   return (
     <div className="App">
@@ -53,6 +67,8 @@ function App() {
       <p>{message}</p>
       <p>{JSON.stringify(orderInfo)}</p>
       <p>{uniqueId} </p>
+      <hr />
+      <button onClick={handleCarrier}>Carrier</button>
     </div>
   );
 }

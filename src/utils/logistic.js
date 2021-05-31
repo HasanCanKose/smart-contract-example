@@ -2,7 +2,7 @@ import web3 from "./web3";
 
 // const address = "0x369e25129196adf9c4c7a8d4aa4a459a32aca3a1";
 
-const address = "0xa593df592B3b581f099120229Cb81F86efA86F7c";
+const address = "0x1a89e8d3637b8B9f23DC1aB737E840eb7e2A449D";
 
 const abi = [
   {
@@ -28,12 +28,16 @@ const abi = [
         type: "string",
       },
       {
-        name: "transitStatus",
+        name: "itemType",
         type: "string",
       },
       {
-        name: "orderStatus",
-        type: "uint256",
+        name: "itemWeight",
+        type: "string",
+      },
+      {
+        name: "transitStatus",
+        type: "string",
       },
       {
         name: "customer",
@@ -44,16 +48,34 @@ const abi = [
         type: "uint256",
       },
       {
-        name: "carrier1",
+        name: "carrier",
         type: "address",
       },
       {
-        name: "carrier1Time",
+        name: "carrierTime",
         type: "uint256",
       },
     ],
     payable: false,
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: "_uniqueId",
+        type: "address",
+      },
+      {
+        name: "_transitStatus",
+        type: "string",
+      },
+    ],
+    name: "carrierReport",
+    outputs: [],
+    payable: false,
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -73,6 +95,37 @@ const abi = [
     ],
     payable: false,
     stateMutability: "view",
+    type: "function",
+  },
+  {
+    constant: false,
+    inputs: [
+      {
+        name: "_itemId",
+        type: "string",
+      },
+      {
+        name: "_itemName",
+        type: "string",
+      },
+      {
+        name: "_itemType",
+        type: "string",
+      },
+      {
+        name: "_itemWeight",
+        type: "string",
+      },
+    ],
+    name: "orderIitem",
+    outputs: [
+      {
+        name: "",
+        type: "address",
+      },
+    ],
+    payable: false,
+    stateMutability: "nonpayable",
     type: "function",
   },
   {
@@ -126,12 +179,16 @@ const abi = [
         type: "string",
       },
       {
-        name: "transitStatus",
+        name: "itemType",
         type: "string",
       },
       {
-        name: "orderStatus",
-        type: "uint256",
+        name: "itemWeight",
+        type: "string",
+      },
+      {
+        name: "transitStatus",
+        type: "string",
       },
       {
         name: "customer",
@@ -142,57 +199,16 @@ const abi = [
         type: "uint256",
       },
       {
-        name: "carrier1",
+        name: "carrier",
         type: "address",
       },
       {
-        name: "carrier1Time",
+        name: "carrierTime",
         type: "uint256",
       },
     ],
     payable: false,
     stateMutability: "view",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
-      {
-        name: "_uniqueId",
-        type: "address",
-      },
-      {
-        name: "_transitStatus",
-        type: "string",
-      },
-    ],
-    name: "carrier1Report",
-    outputs: [],
-    payable: false,
-    stateMutability: "nonpayable",
-    type: "function",
-  },
-  {
-    constant: false,
-    inputs: [
-      {
-        name: "_itemid",
-        type: "string",
-      },
-      {
-        name: "_itemName",
-        type: "string",
-      },
-    ],
-    name: "orderIitem",
-    outputs: [
-      {
-        name: "",
-        type: "address",
-      },
-    ],
-    payable: false,
-    stateMutability: "nonpayable",
     type: "function",
   },
   {

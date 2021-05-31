@@ -7,6 +7,8 @@ const ContractForm = () => {
   const [orderInfo, setOrderInfo] = useState({});
   const [itemId, setItemId] = useState("");
   const [itemName, setItemName] = useState("");
+  const [itemType, setItemType] = useState("");
+  const [itemWeight, setItemWeight] = useState("");
   const [message, setMessage] = useState("");
   const [uniqueId, setUniqueId] = useState("");
 
@@ -24,9 +26,11 @@ const ContractForm = () => {
 
     setMessage("Waiting...");
 
-    const ordered = await logistic.methods.orderIitem(itemId, itemName).send({
-      from: accounts[0],
-    });
+    const ordered = await logistic.methods
+      .orderIitem(itemId, itemName, itemType, itemWeight)
+      .send({
+        from: accounts[0],
+      });
 
     console.log(ordered);
 
@@ -60,6 +64,16 @@ const ContractForm = () => {
         type="text"
         value={itemName}
         onChange={(e) => setItemName(e.target.value)}
+      />
+      <input
+        type="text"
+        value={itemType}
+        onChange={(e) => setItemType(e.target.value)}
+      />
+      <input
+        type="text"
+        value={itemWeight}
+        onChange={(e) => setItemWeight(e.target.value)}
       />
 
       <button onClick={onClick}>Click</button>

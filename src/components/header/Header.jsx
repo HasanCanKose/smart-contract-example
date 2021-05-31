@@ -1,7 +1,11 @@
+import "./Header.css";
+
 const Header = () => {
   return (
     <header>
-      <div>hello</div>
+      <div className="header">
+        <span className="logo">Logistic Smart Contract</span>
+      </div>
     </header>
   );
 };

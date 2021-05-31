@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import lottery from "./utils/lottery";
+import logistic from "./utils/logistic";
 import web3 from "./utils/web3";
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   const fetchData = async () => {
-    const owner = await lottery.methods.owner().call();
+    const owner = await logistic.methods.owner().call();
     setOwner(owner);
   };
 
@@ -25,7 +25,7 @@ function App() {
 
     setMessage("Waiting...");
 
-    const ordered = await lottery.methods.orderIitem(itemId, itemName).send({
+    const ordered = await logistic.methods.orderIitem(itemId, itemName).send({
       from: accounts[0],
     });
 
@@ -34,7 +34,7 @@ function App() {
     setMessage("Done...");
     // setUniqueId(ordered);
 
-    const orderInfo = await lottery.methods.package().call();
+    const orderInfo = await logistic.methods.package().call();
     setOrderInfo(orderInfo);
   };
 
@@ -43,7 +43,7 @@ function App() {
 
     setMessage("Carrier waiting...");
 
-    await lottery.methods.carrier1Report(uniqueId, "Hello").send({
+    await logistic.methods.carrier1Report(uniqueId, "Hello").send({
       from: accounts[0],
     });
 

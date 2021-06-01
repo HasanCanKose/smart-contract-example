@@ -1,10 +1,8 @@
 import { useState, useEffect } from "react";
 import logistic from "../../utils/logistic";
 import web3 from "../../utils/web3";
-import "./ContractForm.css";
 
-const ContractForm = () => {
-  const [owner, setOwner] = useState("");
+const ContractForm = ({ owner }) => {
   const [orderInfo, setOrderInfo] = useState({});
   const [itemId, setItemId] = useState("");
   const [itemName, setItemName] = useState("");
@@ -13,16 +11,7 @@ const ContractForm = () => {
   const [message, setMessage] = useState("");
   const [uniqueId, setUniqueId] = useState("");
 
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    const owner = await logistic.methods.owner().call();
-    setOwner(owner);
-  };
-
-  const onClick = async (e) => {
+  const handleOrder = async (e) => {
     e.preventDefault();
     const accounts = await web3.eth.getAccounts();
 
@@ -58,7 +47,7 @@ const ContractForm = () => {
     <div className="App">
       <p>{owner}</p>
       <div className="form-wrapper">
-        <form onSubmit={onClick}>
+        <form onSubmit={handleOrder}>
           <label htmlFor="itemId">Product No</label>
           <input
             className="contract-form-input"

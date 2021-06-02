@@ -1,15 +1,27 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
+import ContractContext from "../../context/contract/contractContext";
 import logistic from "../../utils/logistic";
 import web3 from "../../utils/web3";
 
 const ContractForm = ({ owner }) => {
-  const [orderInfo, setOrderInfo] = useState({});
-  const [itemId, setItemId] = useState("");
-  const [itemName, setItemName] = useState("");
-  const [itemType, setItemType] = useState("");
-  const [itemWeight, setItemWeight] = useState("");
+  const contractContext = useContext(ContractContext);
+
+  const { getContractInfo } = contractContext;
+
+  const [contract, setContract] = useState({
+    itemId: "",
+    itemName: "",
+    itemType: "",
+    itemWeight: "",
+  });
+
+  const { itemId, itemName, itemType, itemWeight } = contract;
   const [message, setMessage] = useState("");
   const [uniqueId, setUniqueId] = useState("");
+
+  const onChange = (e) => {
+    setContract({ ...contract, [e.target.name]: e.target.value });
+  };
 
   const handleOrder = async (e) => {
     e.preventDefault();
@@ -28,8 +40,8 @@ const ContractForm = ({ owner }) => {
     setMessage("Done...");
     // setUniqueId(ordered);
 
-    const orderInfo = await logistic.methods.package().call();
-    setOrderInfo(orderInfo);
+    const contractInfo = await logistic.methods.package().call();
+    getContractInfo(contractInfo);
   };
 
   const handleCarrier = async () => {
@@ -44,7 +56,7 @@ const ContractForm = ({ owner }) => {
     setMessage("Carrier done");
   };
   return (
-    <div className="App">
+    <div className="contract-form">
       <p>{owner}</p>
       <div className="form-wrapper">
         <form onSubmit={handleOrder}>
@@ -56,7 +68,7 @@ const ContractForm = ({ owner }) => {
             placeholder="Product No..."
             type="text"
             value={itemId}
-            onChange={(e) => setItemId(e.target.value)}
+            onChange={onChange}
           />
           <label htmlFor="itemName">Product Name</label>
           <input
@@ -66,7 +78,7 @@ const ContractForm = ({ owner }) => {
             placeholder="Product Name..."
             type="text"
             value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
+            onChange={onChange}
           />
           <label htmlFor="itemType">Product Type</label>
           <input
@@ -76,7 +88,7 @@ const ContractForm = ({ owner }) => {
             placeholder="Product Type..."
             type="text"
             value={itemType}
-            onChange={(e) => setItemType(e.target.value)}
+            onChange={onChange}
           />
           <label htmlFor="itemWeight">Product Weight</label>
           <input
@@ -86,7 +98,7 @@ const ContractForm = ({ owner }) => {
             placeholder="Product Weight..."
             type="text"
             value={itemWeight}
-            onChange={(e) => setItemWeight(e.target.value)}
+            onChange={onChange}
           />
 
           <button className="contract-form-button" type="submit">
@@ -95,7 +107,7 @@ const ContractForm = ({ owner }) => {
         </form>
       </div>
       <p>{message}</p>
-      <p>{JSON.stringify(orderInfo)}</p>
+      {/* <p>{JSON.stringify(packagee)}</p> */}
       <p>{uniqueId} </p>
       <hr />
       <button onClick={handleCarrier}>Carrier</button>

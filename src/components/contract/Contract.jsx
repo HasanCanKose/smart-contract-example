@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import logistic from "../../utils/logistic";
 import web3 from "../../utils/web3";
 import "./Contract.css";
+import ContractInfo from "./ContractInfo";
 
 const Contract = () => {
   const [owner, setOwner] = useState("");
@@ -24,8 +25,9 @@ const Contract = () => {
   };
 
   return (
-    <div>
+    <div className="contract">
       <ContractForm owner={owner} />
+      <ContractInfo />
     </div>
   );
 };

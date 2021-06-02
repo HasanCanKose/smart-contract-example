@@ -1,13 +1,16 @@
 import "./App.css";
 import Contract from "./components/contract/Contract";
 import Header from "./components/header/Header";
+import ContractState from "./context/contract/ContractState";
 
 function App() {
   return (
-    <>
-      <Header />
-      <Contract />
-    </>
+    <ContractState>
+      <>
+        <Header />
+        <Contract />
+      </>
+    </ContractState>
   );
 }
 

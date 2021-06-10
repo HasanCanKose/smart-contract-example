@@ -57,7 +57,6 @@ const ContractForm = ({ owner }) => {
   };
   return (
     <div className="contract-form">
-      <p>{owner}</p>
       <div className="form-wrapper">
         <form onSubmit={handleOrder}>
           <label htmlFor="itemId">Product No</label>

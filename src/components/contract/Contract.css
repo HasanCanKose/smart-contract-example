@@ -2,8 +2,11 @@
   display: grid;
   grid-template-columns: 50% 50%;
   background-color: #f2f2f2;
-  margin: 10px;
+  margin: 25px 10px 10px 10px;
   grid-gap: 10px;
+  height: auto;
+  justify-items: center;
+  align-content: center;
 }
 
 .form-wrapper {

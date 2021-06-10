@@ -38,10 +38,20 @@ const ContractForm = ({ owner }) => {
     console.log(ordered);
 
     setMessage("Done...");
-    // setUniqueId(ordered);
+
+    setContract({
+      itemId: "",
+      itemName: "",
+      itemType: "",
+      itemWeight: "",
+    });
 
     const contractInfo = await logistic.methods.package().call();
     getContractInfo(contractInfo);
+
+    setTimeout(() => {
+      setMessage("");
+    }, 5000);
   };
 
   const handleCarrier = async () => {
@@ -105,11 +115,7 @@ const ContractForm = ({ owner }) => {
           </button>
         </form>
       </div>
-      <p>{message}</p>
-      {/* <p>{JSON.stringify(packagee)}</p> */}
-      <p>{uniqueId} </p>
-      <hr />
-      <button onClick={handleCarrier}>Carrier</button>
+      <p style={{ textAlign: "center" }}>{message}</p>
     </div>
   );
 };

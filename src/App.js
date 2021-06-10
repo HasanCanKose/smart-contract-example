@@ -1,5 +1,6 @@
 import "./App.css";
 import Contract from "./components/contract/Contract";
+import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
 import ContractState from "./context/contract/ContractState";
 
@@ -9,6 +10,7 @@ function App() {
       <>
         <Header />
         <Contract />
+        <Footer />
       </>
     </ContractState>
   );

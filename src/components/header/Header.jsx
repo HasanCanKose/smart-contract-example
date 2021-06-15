@@ -4,7 +4,7 @@ const Header = () => {
   return (
     <header>
       <div className="header">
-        <span className="logo">Logistic Smart Contract</span>
+        <span className="logo">Order Smart Contract</span>
       </div>
     </header>
   );

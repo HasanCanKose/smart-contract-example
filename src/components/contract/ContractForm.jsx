@@ -111,7 +111,7 @@ const ContractForm = ({ owner }) => {
           />
 
           <button className="contract-form-button" type="submit">
-            Click
+            Order
           </button>
         </form>
       </div>
